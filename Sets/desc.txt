@@ -1,0 +1,2 @@
+- O que é
+    Coleção não ordenada de dados compostas de elementos unicos(Não permite duplicatas);

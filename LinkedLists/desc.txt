@@ -1,0 +1,5 @@
+O que é ?
+
+- Estrutura de dados composta por uma sequência de elementos chamados nós (nodes), 
+  onde cada nó contém um valor e uma referência ao próximo nó na sequência. 
+  Isso permite uma inserção e remoção eficiente de elementos em qualquer parte da lista.
