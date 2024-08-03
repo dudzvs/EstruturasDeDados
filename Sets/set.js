@@ -106,4 +106,24 @@ export class Set {
     });
     return differenceSet;
   }
+
+  /**
+   * Verifica se o conjunto atual é um subconjunto do outro conjunto.
+   * @param {Set} otherSet - O conjunto que será comparado.
+   * @returns {boolean} `true` se o conjunto atual é um subconjunto de `otherSet`, `false` caso contrário.
+   */
+  isSubsetOf(otherSet) {
+    if (this.size() > otherSet.size()) return false;
+
+    let isSubsetOf = true;
+
+    this.values().every((value) => {
+      if (!otherSet.has(value)) {
+        isSubsetOf = false;
+        return false;
+      }
+      return true;
+    });
+    return isSubsetOf;
+  }
 }
