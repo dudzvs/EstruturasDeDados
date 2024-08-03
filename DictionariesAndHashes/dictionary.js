@@ -58,4 +58,17 @@ export class Dictionary {
     delete this.table[this._toString(key)];
     return true;
   }
+
+  /**
+   * Recupera o par chave-valor do dicionário.
+   *
+   * @param {*} key - A chave do dicionário que será encontrada.
+   * @returns {*} - Retorna o valor associado à chave se a chave existir, `undefined` caso contrário.
+   */
+  get(key) {
+    if (this.hasKey(key)) {
+      return this.table[this._toString(key)];
+    }
+    return undefined;
+  }
 }
