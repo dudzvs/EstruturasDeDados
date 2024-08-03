@@ -21,6 +21,16 @@ export class Dictionary {
   }
 
   /**
+   * Verifica se a chave esta presente no Dicionario
+   *
+   * @param {*} key - Chave do dicionario.Sera convertida em uma string
+   * @returns {boolean} - Retorna `true` se a chave estiver presente, `false` caso contrário.
+   */
+  hasKey(key) {
+    return this.table[this._toString(key)] != null;
+  }
+
+  /**
    * Adiciona um par de chave e valor ao dicionário.
    *
    * @param {*} key - A chave para a entrada no dicionário. Será convertida para uma string.
@@ -34,5 +44,18 @@ export class Dictionary {
       return true;
     }
     return false;
+  }
+
+  /**
+   * Remove o par chave-valor do dicionário.
+   *
+   * @param {*} key - A chave do dicionário que será removida. Será convertida em uma string.
+   * @returns {boolean} - Retorna `true` se a chave foi removida com sucesso, `false` se a chave não existia no dicionário.
+   */
+  remove(key) {
+    if (!this.hasKey(key)) return false;
+
+    delete this.table[this._toString(key)];
+    return true;
   }
 }
