@@ -1,8 +1,16 @@
+import { ValuePair } from "./valuePair.js";
+
 export class Dictionary {
   constructor() {
     this.table = {};
   }
 
+  /**
+   * Converte diversos tipos de dados para sua representação em string.
+   *
+   * @param {*} data - O dado a ser convertido em string.
+   * @returns {string} - A representação em string dos dados fornecidos.
+   */
   _toString(data) {
     if (data === null) return "NULL";
     if (data === undefined) return "UNDEFINED";
@@ -10,5 +18,21 @@ export class Dictionary {
       return data;
     }
     return data.toString();
+  }
+
+  /**
+   * Adiciona um par de chave e valor ao dicionário.
+   *
+   * @param {*} key - A chave para a entrada no dicionário. Será convertida para uma string.
+   * @param {*} value - O valor associado à chave.
+   * @returns {boolean} - Retorna `true` se o par foi adicionado com sucesso, `false` caso contrário.
+   */
+  set(key, value) {
+    if (key != null && value != null) {
+      const tableKey = this._toString(key);
+      this.table[tableKey] = new ValuePair(key, value);
+      return true;
+    }
+    return false;
   }
 }
