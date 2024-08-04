@@ -46,6 +46,12 @@ export class Dictionary {
     return false;
   }
 
+  /**
+   * Remove um par chave-valor do dicionario
+   *
+   * @param {*} key - Chave que sera removida do dicionario
+   * @returns - Retorna `true` caso a chave seja removida com sucesso e `false` caso contrairio
+   */
   remove(key) {
     if (this.hasKey(key)) {
       delete this.table[this._toString(key)];
@@ -55,8 +61,44 @@ export class Dictionary {
     return false;
   }
 
+  /**
+   * Recupera o par chave-valor do dicionario
+   *
+   * @param {*} key - Chave do dicionario que sera buscada
+   * @returns - Retorna par chave-valor caso a chave exista e `false` caso nao;
+   */
   get(key) {
     if (!this.hasKey(key)) return false;
     return this.table[this._toString(key)];
+  }
+
+  keyValues() {
+    return Object.values(this.table);
+  }
+
+  /**
+   * Recupera as chaves do dicionario
+   *
+   * @returns {Array} - Retorna um array com as chaves do dicionario
+   */
+  keys() {
+    /* const keys = [];
+    const valuePair = this.keyValues();
+
+    for (let i = 0; i < valuePair.length; i++) {
+      keys.push(valuePair[i].key);
+    } 
+    return keys;
+    */
+    return this.keyValues().map((valuePair) => valuePair.key);
+  }
+
+  /**
+   * Recupera os valores das chaves do dicionario
+   * @returns {Array} - Retrona um array com os valores do dicionario
+   *
+   */
+  values() {
+    return this.keyValues().map((valuePair) => valuePair.value);
   }
 }
