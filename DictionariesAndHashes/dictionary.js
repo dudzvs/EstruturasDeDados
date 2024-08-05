@@ -72,6 +72,10 @@ export class Dictionary {
     return this.table[this._toString(key)];
   }
 
+  /**
+   * Recupera todos os valores da tabela
+   * @returns {Array} - Retorna um array com todos os valores da tabela
+   */
   keyValues() {
     return Object.values(this.table);
   }
@@ -100,5 +104,46 @@ export class Dictionary {
    */
   values() {
     return this.keyValues().map((valuePair) => valuePair.value);
+  }
+
+  /**
+   * Redefine a tabela do dicionario
+   */
+  clear() {
+    this.table = {};
+  }
+
+  /**
+   * Recupera o nº de elementos no dicionario
+   * @returns - Retorna o nª de elementos do dicionario
+   */
+  size() {
+    return Object.keys(this.table).length;
+  }
+
+  /**
+   * Verifica se o dicionario esta vazio
+   * @returns - Retorna `true` se estiver vazio, `false` caso contrario
+   */
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  /**
+   * Cria uma representação em string do dicionário
+   * @returns {string} - Uma string representando o dicionário.
+   *                    Se estiver vazio, retorna uma string vazia.
+   */
+  toString() {
+    if (this.isEmpty()) return "";
+
+    const valuePair = this.keyValues();
+    let objString = `${valuePair[0].toString()}`;
+
+    for (let i = 1; i < valuePair.length; i++) {
+      objString = `${objString}, ${valuePair[i].toString()}`;
+    }
+
+    return objString;
   }
 }
