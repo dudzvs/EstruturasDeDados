@@ -5,6 +5,7 @@ export class HashTable {
   constructor(initialCapacity = 7) {
     this.table = {};
     this.capacity = initialCapacity;
+    this.loadFactor = 0.75;
     this.size = 0;
   }
 
@@ -28,6 +29,22 @@ export class HashTable {
     return this._djb2(key) % this.capacity;
   }
 
+  _resize() {
+    const newCapacity = this.capacity * 2;
+    const newTable = new HashTable(newCapacity);
+
+    for (const key in this.table) {
+      let current = this.table[key].getHead();
+
+      while (current != null) {
+        newTable.put(current.element.key, current.element.value);
+        current = current.next;
+      }
+    }
+    this.table = newTable.table;
+    this.capacity = newCapacity;
+  }
+
   /**
    * Adiciona um novo par de chave-valor á tabela hash.
    *
@@ -44,6 +61,10 @@ export class HashTable {
       }
       this.table[index].push(new ValuePair(key, data));
       this.size++;
+
+      if (this.size / this.capacity > this.loadFactor) {
+        this._resize();
+      }
       return true;
     }
     return false;
