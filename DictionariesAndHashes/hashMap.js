@@ -92,6 +92,7 @@ export class HashTable {
           if (linkedList.isEmpty()) {
             delete this.table[index];
           }
+          this.size--;
           return true;
         }
         current = current.next;
